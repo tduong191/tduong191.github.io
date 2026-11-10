@@ -40,7 +40,7 @@ No API key, no paid tier, no add-on. Apps Script is built into Google Sheets and
 **3. Paste the script.** Extensions → Apps Script, delete the stub function, paste this:
 
 ```javascript
-const SHEET_NAME = 'Iron Ledger';   // tab with your exercises
+const SHEET_NAME = 'Workout';       // tab with your exercises
 const LOG_NAME   = 'Log';           // tab the history goes to
 const CHECKBOX   = 'A1';            // cell you tick to save
 

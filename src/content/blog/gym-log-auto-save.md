@@ -1,10 +1,12 @@
 ---
-title: 'I made my gym spreadsheet save itself'
+title: 'Gym log, part 2: I made my spreadsheet save itself'
 description: 'The save button worked. I kept forgetting to press it. A nightly trigger that compares the sheet to the last log entry fixed it, without logging phantom sessions.'
 pubDate: '2026-11-07'
 ---
 
-Part 2 of [the gym log save button](/blog/gym-log-save-button/). The first build worked exactly as designed, and it still failed, because it needed me to remember something at 9:40am on my way out of the gym.
+This is part 2. [Part 1](/blog/gym-log-save-button/) built a checkbox in a Google Sheet that appends a dated copy of my workout to a Log tab. If you have not built that yet, start there, because this post replaces its script.
+
+The first build worked exactly as designed, and it still failed, because it needed me to remember something at 9:40am on my way out of the gym.
 
 ## The problem
 
@@ -48,7 +50,7 @@ Two bits of plumbing came along with it. Saving now deletes any existing rows fo
 Replace your whole `Code.gs` with this, then run `installAutoSave` once from the dropdown and approve the permission prompt. It is broader than last time because creating triggers needs it.
 
 ```javascript
-const SHEET_NAME = 'Iron Ledger';
+const SHEET_NAME = 'Workout';   // your exercise tab, named exactly as in part 1
 const LOG_NAME   = 'Log';
 const CHECKBOX   = 'A1';
 
@@ -141,6 +143,8 @@ function onEdit(e) {
   e.range.setValue(false);
 }
 ```
+
+If your exercise tab is not called `Workout`, change `SHEET_NAME` to match. The checkbox ignores edits on any other tab, and it fails silently.
 
 Check the clock icon in the left sidebar afterwards — one daily `autoSave` trigger should be listed.
 
