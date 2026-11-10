@@ -47,7 +47,7 @@ A tracker with no history is just a whiteboard.
 
 The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the script copies the exercises you changed into Log with today's date. Then the box unticks itself, ready for next time.
 
-![The Log tab: one row per exercise, stamped with the date, appended every time the script runs.](../../assets/gym-log-tab.png)
+![The checkbox sitting in cell A1, next to the sheet title.](../../assets/gym-checkbox.png)
 
 Why a checkbox and not a real button? Buttons drawn on a sheet don't run scripts in the Sheets phone app, and I'm literally holding my phone at the gym. Ticking a checkbox counts as editing a cell, and that's what triggers the script.
 
@@ -64,6 +64,8 @@ Turns out the hardest part of a save button is remembering to press it. Last set
 So now it saves itself. Every night between 9 and 10pm, the script asks one question: which exercises changed since they were last logged? Only those get saved. If nothing changed, it saves nothing, so rest days don't turn into fake workouts.
 
 If it saves twice in one day, it replaces that day instead of making a duplicate. The checkbox still works any time you want to save right away.
+
+![The Log tab: one row per exercise, stamped with the date, appended every time the script runs.](../../assets/gym-log-tab.png)
 
 ## Copy it
 
