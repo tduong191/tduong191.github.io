@@ -35,6 +35,8 @@ I asked Claude for a 4-day plan built around my goals, laid out as a sheet. One 
 
 It looked great. I opened it at the gym, typed in my numbers, and felt extremely organized.
 
+![The Iron Ledger tab: four day blocks, each exercise a row, with columns for weight, reps, target reps and a dumbbells-only alternative.](../../assets/gym-iron-ledger.png)
+
 ## Week one: wait, where did my progress go?
 
 After a week I was clearly getting stronger. My squat went up. But the sheet couldn't show it, because every time I typed a new weight, the old one disappeared. Overwritten. Gone. Like it never happened.
@@ -47,21 +49,7 @@ The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the s
 
 Why a checkbox and not a real button? Buttons drawn on a sheet don't run scripts in the Sheets phone app, and I'm literally holding my phone at the gym. Ticking a checkbox counts as editing a cell, and that's what triggers the script.
 
-## Part 2.1: I kept forgetting to tick the box
-
-Turns out the hardest part of a save button is remembering to press it. Last set done, bag on my shoulder, already thinking about work, and boom: the session never got logged.
-
-So now it saves itself. Every night between 9 and 10pm, the script asks one question: which exercises changed since they were last logged? Only those get saved. If nothing changed, it saves nothing, so rest days don't turn into fake workouts.
-
-If it saves twice in one day, it replaces that day instead of making a duplicate. The checkbox still works any time you want to save right away.
-
-## Copy it
-
-You need two things: your exercises, and the script.
-
-**Option 1: copy my template.** [Make a copy of the Build Small gym template](https://docs.google.com/spreadsheets/d/1v0qiOfv51VeTN_-9X-op0iDxbvebptbnFTYKR_lcErY/copy). It comes with the sheet, the Log tab and the script already inside. Then do the one-time setup below.
-
-**Option 2: use your own sheet.** Put exercise names in column B, Type (Compound or Accessory) in column C, Weight in column E and Reps in column F. Put a row that starts with "Day 1" above your first exercise. Add a tab called `Log`, then go to Extensions → Apps Script and paste this:
+Here's the whole thing. Paste it into Extensions → Apps Script:
 
 ```javascript
 const SHEET_NAME = 'Iron Ledger';   // your exercise tab
@@ -83,6 +71,7 @@ function readSheet_() {
     if (/^Day\s*\d/i.test(name)) { started = true; return; }
     if (!started || !name) return;
     if (type !== 'Compound' && type !== 'Accessory') return;
+    if (String(r[4]).trim() === '' && String(r[5]).trim() === '') return;   // nothing recorded yet
     rows.push([name, r[4], r[5]]);      // name, Weight, Reps
   });
   return rows;
@@ -159,6 +148,22 @@ function onEdit(e) {
 ```
 
 If your exercise tab isn't called Iron Ledger, change `SHEET_NAME` on the first line.
+
+## Part 2.1: I kept forgetting to tick the box
+
+Turns out the hardest part of a save button is remembering to press it. Last set done, bag on my shoulder, already thinking about work, and boom: the session never got logged.
+
+So now it saves itself. Every night between 9 and 10pm, the script asks one question: which exercises changed since they were last logged? Only those get saved. If nothing changed, it saves nothing, so rest days don't turn into fake workouts.
+
+If it saves twice in one day, it replaces that day instead of making a duplicate. The checkbox still works any time you want to save right away.
+
+## Copy it
+
+You need two things: your exercises, and the script.
+
+**Option 1: copy my template.** [Make a copy of the Build Small gym template](https://docs.google.com/spreadsheets/d/1v0qiOfv51VeTN_-9X-op0iDxbvebptbnFTYKR_lcErY/copy). It comes with the sheet, the Log tab and the script already inside. Then do the one-time setup below.
+
+**Option 2: use your own sheet.** Put exercise names in column B, Type (Compound or Accessory) in column C, Weight in column E and Reps in column F. Put a row that starts with "Day 1" above your first exercise. Add a tab called `Log`, then go to Extensions → Apps Script and paste [the script from Part 2](#part-2-a-save-button-with-apps-script).
 
 **One-time setup, for both options:**
 
