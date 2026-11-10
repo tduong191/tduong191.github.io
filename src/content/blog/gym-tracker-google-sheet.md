@@ -45,6 +45,8 @@ After a week I was clearly getting stronger. My squat went up. But the sheet cou
 
 A tracker with no history is just a whiteboard.
 
+![Four-panel presentation meme: build a workout plan, work out every week, update new PRs, lose the progress trend — with a horrified double-take at the last one.](../../assets/gym-meme-plan.png)
+
 ## Part 2: a save button with Apps Script
 
 The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the script copies the exercises you changed into Log with today's date. Then the box unticks itself, ready for next time.
