@@ -4,13 +4,13 @@ description: 'No new app, no new login. A Google Sheet that tracks my lifts, kee
 pubDate: '2026-11-09'
 ---
 
-Every fitness app wants the same thing from me. Download it. Make an account. Verify my email. Pick a plan. Turn on notifications. Unlock "insights."
+Every fitness app wants the same thing from me. Download it. Make an account. Verify my email. Pick a plan. Turn on notifications. Unlock "insights." Bro, chill.
 
-Dang it, I just want to write down how much I squatted.
+Dang it, I just want to write down how much I squatted. 
 
 ![Running Away Balloon meme: reaching happily for a balloon labelled "track my workout", then still reaching for it while being hugged by a pink balloon labelled "another subscription".](../../assets/gym-meme.png)
 
-So this is the build: a Google Sheet that tracks my lifts, remembers every session, and saves itself every night. No new app, no new login. You can copy it in about 10 minutes.
+So this is the build: a Google Sheet that tracks my lifts, remembers every session, and saves itself every night. No new app, no new login. You can copy it in about 10 minutes. And no AI is run to track your progress!!! (disclaimer: I used AI once to add some exercises at the beginning).
 
 ## The problem
 
@@ -87,7 +87,7 @@ You need two things: your exercises, and the script.
 2. Approve the permissions. Google will warn that it hasn't verified the app. That's normal for a script you made yourself: click Advanced and continue.
 3. Back in the sheet, click cell A1 on your exercise tab and choose Insert → Checkbox.
 
-That's it. Tick the box to save now, or let the nightly save catch it.
+That's it. Tick the box to save now, or let the nightly save catch it. No AI or app to track. We're throwing it back baby. #tbt #lol
 
 ## What's next
 
