@@ -65,6 +65,8 @@ Open Extensions → Apps Script, delete the stub `myFunction`, and paste the who
 
 Turns out the hardest part of a save button is remembering to press it. Last set done, bag on my shoulder, already thinking about work, and boom: the session never got logged.
 
+![Doge meme: a shiba inu looking sheepishly sideways, captioned "i just forgot...".](../../assets/gym-meme-forgot.png)
+
 So now it saves itself. Every night between 9 and 10pm, the script asks one question: which exercises changed since they were last logged? Only those get saved. If nothing changed, it saves nothing, so rest days don't turn into fake workouts.
 
 If it saves twice in one day, it replaces that day instead of making a duplicate. The checkbox still works any time you want to save right away.
