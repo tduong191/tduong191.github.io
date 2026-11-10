@@ -16,7 +16,7 @@ I tried the obvious options first. Every gym app wants me to rebuild my program 
 
 | Option | Cost | Why I passed |
 | --- | --- | --- |
-| Gym tracker apps (Strong, Hevy) | $5–10/month | Re-enter my whole program, learn their model of a workout |
+| Gym tracker apps (Strong, Hevy) | Free tiers, Pro about $3–5/month | Re-enter my whole program, learn their model of a workout |
 | Apple Fitness | Free | Tracks sessions, not the weight on the bar |
 | A web app I build myself | Free | I actually built one first. It worked and I still did not use it, because it was not my spreadsheet |
 | Sheets + Apps Script | Free | Keeps the sheet exactly as it is, adds the one thing it was missing |
@@ -113,6 +113,10 @@ Free. No API, no model call, no subscription. Apps Script's quotas are far above
 
 One design decision worth stealing: the Log tab stores one row per exercise per session, not one wide row per session. Wide looks tidier when you first see it, and then it breaks the moment you add an exercise, because every past row is now a column short. Long format never breaks, and a pivot table over it gives you any trend you want later.
 
-Two things I left undone on purpose. Ticking twice in one day appends the same date twice, which a pivot shrugs off but still bothers me; a few lines to delete an existing block for that date would fix it. And there is no trend view yet — I wanted the saving to be real before I built anything to look at. That is part 2.
+Two things I left undone on purpose. Ticking twice in one day appends the same date twice, which a pivot shrugs off but still bothers me. And there is no trend view yet — I wanted the saving to be real before I built anything to look at.
+
+[Part 2](/blog/gym-log-auto-save/) fixes the duplicate date and makes the save happen without me remembering to tick. The trend view comes after that.
 
 The whole thing is about fifty lines and it does one job: stop my spreadsheet from forgetting.
+
+Sources: [Strong on the App Store](https://apps.apple.com/app/strong/id464254577) ($4.99/month, $29.99/year), [Hevy pricing](https://www.hevyapp.com/hevy-pricing-comparison/) ($2.99/month, $23.99/year). US prices, checked November 9, 2026. The App Store listings also show other price points, so yours may differ.
