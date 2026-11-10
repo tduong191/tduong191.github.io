@@ -8,7 +8,7 @@ Every fitness app wants the same thing from me. Download it. Make an account. Ve
 
 Dang it, I just want to write down how much I squatted.
 
-![Running Away Balloon meme, captioned "track my workout", "track my workout" and "another subscription".](https://i.imgflip.com/b5i1m7.jpg)
+![Running Away Balloon meme: reaching happily for a balloon labelled "track my workout", then still reaching for it while being hugged by a pink balloon labelled "another subscription".](../../assets/gym-meme.png)
 
 So this is the build: a Google Sheet that tracks my lifts, remembers every session, and saves itself every night. No new app, no new login. You can copy it in about 10 minutes.
 
