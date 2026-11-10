@@ -35,7 +35,7 @@ I asked Claude for a 4-day plan built around my goals, laid out as a sheet. One 
 
 It looked great. I opened it at the gym, typed in my numbers, and felt extremely organized.
 
-![The Iron Ledger tab: four day blocks, each exercise a row, with columns for weight, reps, target reps and a dumbbells-only alternative.](../../assets/gym-iron-ledger.png)
+![The sheet: four day blocks, one row per exercise, with columns for weight, reps you actually did, and the target rep range.](../../assets/gym-iron-ledger.png)
 
 ## Week one: wait, where did my progress go?
 
