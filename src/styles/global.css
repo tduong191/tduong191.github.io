@@ -88,8 +88,12 @@ table {
 }
 img {
 	max-width: 100%;
+	max-height: 480px;
+	width: auto;
 	height: auto;
 	border-radius: 8px;
+	display: block;
+	margin-inline: auto;
 }
 code {
 	padding: 2px 5px;
