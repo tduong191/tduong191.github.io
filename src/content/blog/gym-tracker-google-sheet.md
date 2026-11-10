@@ -47,6 +47,8 @@ A tracker with no history is just a whiteboard.
 
 The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the script copies the exercises you changed into Log with today's date. Then the box unticks itself, ready for next time.
 
+![The Log tab: one row per exercise, stamped with the date, appended every time the script runs.](../../assets/gym-log-tab.png)
+
 Why a checkbox and not a real button? Buttons drawn on a sheet don't run scripts in the Sheets phone app, and I'm literally holding my phone at the gym. Ticking a checkbox counts as editing a cell, and that's what triggers the script.
 
 ![The script open in the Apps Script editor, reached from Extensions → Apps Script.](../../assets/gym-apps-script.png)
