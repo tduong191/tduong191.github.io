@@ -8,6 +8,10 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
 	site: 'https://tduong191.github.io',
 	integrations: [mdx(), sitemap()],
+	redirects: {
+		'/blog/gym-log-save-button': '/blog/gym-tracker-google-sheet',
+		'/blog/gym-log-auto-save': '/blog/gym-tracker-google-sheet',
+	},
 	fonts: [
 		{
 			provider: fontProviders.local(),
