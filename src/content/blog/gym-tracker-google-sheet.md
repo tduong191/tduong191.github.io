@@ -8,6 +8,8 @@ Every fitness app wants the same thing from me. Download it. Make an account. Ve
 
 Dang it, I just want to write down how much I squatted.
 
+![Three onboarding screens from a made-up fitness app — create an account, choose a plan, enable notifications — next to a sticky note that just says Squat, 95.](../../assets/gym-onboarding.png)
+
 So this is the build: a Google Sheet that tracks my lifts, remembers every session, and saves itself every night. No new app, no new login. You can copy it in about 10 minutes.
 
 ## The problem
