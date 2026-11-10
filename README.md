@@ -1,4 +1,4 @@
-# Build Small
+# Un-overengineering
 
 Small, reproducible AI builds that live inside the tools you already use. Built with [Astro](https://astro.build), deployed to GitHub Pages.
 

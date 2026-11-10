@@ -1,5 +1,5 @@
 // Global site data. Edit these two lines to rename the site.
-export const SITE_TITLE = 'Build Small';
+export const SITE_TITLE = 'Un-overengineering';
 export const SITE_DESCRIPTION =
 	'Small, reproducible AI builds that live inside the tools you already use.';
 
