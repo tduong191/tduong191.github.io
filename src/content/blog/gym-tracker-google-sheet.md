@@ -51,11 +51,11 @@ The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the s
 
 Why a checkbox and not a real button? Buttons drawn on a sheet don't run scripts in the Sheets phone app, and I'm literally holding my phone at the gym. Ticking a checkbox counts as editing a cell, and that's what triggers the script.
 
-![The script open in the Apps Script editor, reached from Extensions → Apps Script.](../../assets/gym-apps-script.png)
-
 It's about 90 lines, which is a lot to scroll past, so it lives in a file: **[download gym-log.gs](/downloads/gym-log.gs)** (or [read it on GitHub](https://github.com/tduong191/tduong191.github.io/blob/main/public/downloads/gym-log.gs) first, which you should probably do before running a stranger's script).
 
 Open Extensions → Apps Script, delete the stub `myFunction`, and paste the whole file in. If your exercise tab isn't called Iron Ledger, change `SHEET_NAME` on the first line.
+
+![The script open in the Apps Script editor, reached from Extensions → Apps Script.](../../assets/gym-apps-script.png)
 
 ## Part 2.1: I kept forgetting to tick the box
 
