@@ -43,7 +43,7 @@ A tracker with no history is just a whiteboard.
 
 ## Part 2: a save button with Apps Script
 
-The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the script copies every exercise into Log with today's date. Then the box unticks itself, ready for next time.
+The fix is a Log tab and a small script. Tick the checkbox in cell A1, and the script copies the exercises you changed into Log with today's date. Then the box unticks itself, ready for next time.
 
 Why a checkbox and not a real button? Buttons drawn on a sheet don't run scripts in the Sheets phone app, and I'm literally holding my phone at the gym. Ticking a checkbox counts as editing a cell, and that's what triggers the script.
 
@@ -51,7 +51,7 @@ Why a checkbox and not a real button? Buttons drawn on a sheet don't run scripts
 
 Turns out the hardest part of a save button is remembering to press it. Last set done, bag on my shoulder, already thinking about work, and boom: the session never got logged.
 
-So now it saves itself. Every night between 9 and 10pm, the script asks one question: is the sheet different from the last thing in Log? If yes, it saves. If nothing changed, it does nothing, so rest days don't turn into fake workouts.
+So now it saves itself. Every night between 9 and 10pm, the script asks one question: which exercises changed since they were last logged? Only those get saved. If nothing changed, it saves nothing, so rest days don't turn into fake workouts.
 
 If it saves twice in one day, it replaces that day instead of making a duplicate. The checkbox still works any time you want to save right away.
 
@@ -92,12 +92,15 @@ function fingerprint_(rows) {
   return rows.map(r => r.join('\u0001')).join('\u0002');
 }
 
-function lastLogged_(log) {
+function latestByExercise_(log, skipKey) {
+  const map = {};
   const last = log.getLastRow();
-  if (last < 2) return null;
-  const vals = log.getRange(2, 1, last - 1, 4).getValues();
-  const key  = keyOf_(vals[vals.length - 1][0]);
-  return { key: key, rows: vals.filter(v => keyOf_(v[0]) === key).map(v => v.slice(1)) };
+  if (last < 2) return map;
+  log.getRange(2, 1, last - 1, 4).getValues().forEach(v => {
+    if (keyOf_(v[0]) === skipKey) return;
+    map[String(v[1]).trim()] = v[2] + '|' + v[3];
+  });
+  return map;
 }
 
 function removeRowsFor_(log, key) {
@@ -116,22 +119,21 @@ function logSession() {
     log.appendRow(['Date', 'Exercise', 'Weight', 'Reps']);
     log.setFrozenRows(1);
   }
-  const rows = readSheet_();
-  if (!rows.length) throw new Error('No exercise rows found. Check SHEET_NAME and column C.');
   const today = new Date();
-  removeRowsFor_(log, dateKey_(today));           // one block per date
+  const key   = dateKey_(today);
+  const prev  = latestByExercise_(log, key);
+  const rows  = readSheet_().filter(r => prev[r[0]] !== r[1] + '|' + r[2]);  // only what changed
+  removeRowsFor_(log, key);                       // one block per date
+  if (!rows.length) return;
   const start = log.getLastRow() + 1;
   log.getRange(start, 1, rows.length, 4).setValues(rows.map(r => [today].concat(r)));
   log.getRange(start, 1, rows.length, 1).setNumberFormat('yyyy-mm-dd');
 }
 
 function autoSave() {
-  const log = SpreadsheetApp.getActive().getSheetByName(LOG_NAME);
   const current = readSheet_();
   if (!current.length) return;
   if (PropertiesService.getScriptProperties().getProperty('base') === fingerprint_(current)) return;
-  const prev = log ? lastLogged_(log) : null;
-  if (prev && fingerprint_(prev.rows) === fingerprint_(current)) return;  // nothing changed
   logSession();
 }
 
@@ -166,16 +168,6 @@ If your exercise tab isn't called Iron Ledger, change `SHEET_NAME` on the first 
 
 That's it. Tick the box to save now, or let the nightly save catch it.
 
-## What broke
-
-- **Apps Script just wasn't there.** My file was an `.xlsx` sitting in Drive, which runs in a compatibility mode with no scripts. File → Save as Google Sheets fixed it.
-- **A leftover example row got logged** as a real exercise. Now the script ignores everything above the first "Day 1" row.
-- **Exercises with a blank Type got skipped** without any error. If something's missing from your Log, check column C first.
-- **The Log copies the whole sheet**, not just what I did that day. So every session says I did every exercise. Fixing that is next.
-- **Same weights, same reps? No save.** If you train and nothing changes, auto-save thinks it was a rest day. Tick the box on those days.
-- **Editing the sheet without training** looks like a workout to the nightly save. Run `markBaseline` once after big edits.
-
 ## What's next
 
-- Choose which day I trained, so Log only saves those exercises
 - A trend chart for each lift, now that there's real history to look at
