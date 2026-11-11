@@ -16,90 +16,34 @@ const posts = (await getCollection('blog'))
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			h1 {
-				font-size: clamp(2.1rem, 7vw, 3rem);
-			}
-			h2 {
-				font-size: 1.5rem;
-				margin-top: 2.5rem;
-			}
-			.lede {
-				font-size: 1.1em;
-			}
-			ul.rules {
-				list-style: none;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.5rem;
-				padding: 0;
-				margin: 1.5rem 0 0;
-			}
-			ul.rules li {
-				background: white;
-				border: 2px solid rgb(var(--black));
-				border-radius: 999px;
-				padding: 0.1em 0.9em;
-				font-size: 0.8em;
-				font-weight: 700;
-				line-height: 1.6;
-			}
 			ul.posts {
 				list-style: none;
 				padding: 0;
 			}
 			ul.posts li {
-				margin-bottom: 1.5rem;
-			}
-			ul.posts a {
-				font-weight: 700;
-			}
-			ul.posts p {
-				margin: 0;
-			}
-			ul.posts .blurb {
-				color: rgb(var(--gray-dark));
-				font-size: 0.9em;
-				line-height: 1.5;
+				margin-bottom: 1rem;
 			}
 			ul.posts .date {
+				margin: 0;
 				color: rgb(var(--gray));
-				font-size: 0.8em;
-			}
-			ul.next {
-				padding-left: 1.2em;
-			}
-			.links {
-				margin-top: 2.5rem;
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>I could have built an app. I used a spreadsheet instead.</h1>
-			<p class="lede">
-				I'm Trang. I build tiny AI things inside tools you already have: Sheets, Shortcuts, Notes.
-				No new app. No new account. No "quick signup."
-			</p>
+			<h1>AI inside the tools you already use</h1>
 			<p>
-				I build AI systems for a living, so this is my palate cleanser: the smallest thing that
-				works. Every post covers what I used, how it works, how to copy it, and what broke. The
-				"what broke" part is my favorite.
+				I build small things that make AI useful without asking you to adopt another app: a
+				spreadsheet, a Shortcut, a note. Every post shows what I used, how it works, how to copy
+				it, and what broke.
 			</p>
-			<ul class="rules">
-				<li>No new app</li>
-				<li>No new account</li>
-				<li>Copy it same day</li>
-				<li>Honest about what broke</li>
-			</ul>
-
-			<h2>What I've built so far</h2>
+			<h2>Latest posts</h2>
 			<ul class="posts">
 				{
 					posts.map((post) => (
 						<li>
 							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-							<p class="blurb">{post.data.description}</p>
 							<p class="date">
 								<FormattedDate date={post.data.pubDate} />
 							</p>
@@ -107,15 +51,7 @@ const posts = (await getCollection('blog'))
 					))
 				}
 			</ul>
-
-			<h2>On the list (no promises)</h2>
-			<ul class="next">
-				<li>Voice note taker, part 2: turn to-dos into Reminders</li>
-				<li>Gym log: fix the double-tick bug, add a trend view</li>
-				<li>A one-click "make a copy" sheet and a Shortcut you can import</li>
-			</ul>
-
-			<p class="links"><a href="/blog/">All posts</a> · <a href="/rss.xml">RSS</a></p>
+			<p><a href="/blog/">All posts</a> · <a href="/rss.xml">RSS</a></p>
 		</main>
 		<Footer />
 	</body>
