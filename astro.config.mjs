@@ -11,6 +11,7 @@ export default defineConfig({
 	redirects: {
 		'/blog/gym-log-save-button': '/blog/gym-tracker-google-sheet',
 		'/blog/gym-log-auto-save': '/blog/gym-tracker-google-sheet',
+		'/blog/build-small-ai-in-tools-you-have': '/blog',
 	},
 	fonts: [
 		{
