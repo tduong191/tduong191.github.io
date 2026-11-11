@@ -23,6 +23,11 @@ const posts = (await getCollection('blog'))
 			ul.posts li {
 				margin-bottom: 1rem;
 			}
+			ul.posts .blurb {
+				margin: 0;
+				font-size: 0.9em;
+				line-height: 1.5;
+			}
 			ul.posts .date {
 				margin: 0;
 				color: rgb(var(--gray));
@@ -44,6 +49,7 @@ const posts = (await getCollection('blog'))
 					posts.map((post) => (
 						<li>
 							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							<p class="blurb">{post.data.description}</p>
 							<p class="date">
 								<FormattedDate date={post.data.pubDate} />
 							</p>
